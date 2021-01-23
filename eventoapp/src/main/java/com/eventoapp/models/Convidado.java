@@ -1,7 +1,11 @@
 package com.eventoapp.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -11,8 +15,8 @@ public class Convidado {
 	private String rg;
 	private String nomeConvidado;
 	
-	@ManyToOne
-	private Evento evento;
+	@ManyToMany
+	private List<Evento> evento;
 	
 	public String getRg() {
 		return rg;
@@ -30,11 +34,11 @@ public class Convidado {
 		this.nomeConvidado = nomeConvidado;
 	}
 
-	public Evento getEvento() {
+	public List<Evento> getEvento() {
 		return evento;
 	}
 
-	public void setEvento(Evento evento) {
+	public void setEvento(List<Evento> evento) {
 		this.evento = evento;
 	}
 	

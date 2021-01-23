@@ -1,6 +1,7 @@
 package com.eventoapp.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,8 +59,18 @@ public class EventoController {
 	@RequestMapping(value="/{codigo}", method=RequestMethod.POST)
 	public String detalhesEventoPost(@PathVariable("codigo") long codigo, Convidado convidado) {
 		Evento evento = er.findByCodigo(codigo);
-		convidado.setEvento(evento);
-		cr.save(convidado);
+		//convidado.setEvento(evento);
+		try {
+			Convidado c = cr.findByRg(convidado.getRg());
+			c.getEvento().add(evento);
+			cr.save(c);
+		} catch (Exception e){
+			System.out.println("Teste");
+			convidado.setEvento(new ArrayList<Evento>());
+			convidado.getEvento().add(evento);
+			cr.save(convidado);
+		}
+			
 		return "redirect:/{codigo}";
 	}
 }
