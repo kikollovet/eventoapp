@@ -8,10 +8,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.eventoapp"})
-@EnableJpaRepositories("com.eventoapp.repository")
-@EnableAutoConfiguration
-@EntityScan("com.eventoapp.models")
+//@ComponentScan(basePackages = {"com.eventoapp"})
+//@EnableJpaRepositories("com.eventoapp.repository")
+//@EnableAutoConfiguration
+//@EntityScan("com.eventoapp.models")
 public class EventoappApplication {
 
 	public static void main(String[] args) {
