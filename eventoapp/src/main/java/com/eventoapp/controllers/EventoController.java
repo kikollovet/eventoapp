@@ -88,12 +88,15 @@ public class EventoController {
 		}
 		
 		Evento evento = er.findByCodigo(codigo);
-		//convidado.setEvento(evento);
-		//cr.save(convidado);
 		
 		try {
 			Convidado c = cr.findByRg(convidado.getRg());
 			c.getEvento().add(evento);
+			
+			//Essa linha é opcional. Com isso o convidado atualiza seu nome de cadsatro
+			//com o mesmo RG, sem ela fica o nome cadastrado da primeira vez
+			//c.setNomeConvidado(convidado.getNomeConvidado());
+			
 			cr.save(c);
 		} catch (Exception e){
 			System.out.println("Teste");
