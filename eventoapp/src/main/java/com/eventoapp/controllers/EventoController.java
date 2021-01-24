@@ -1,6 +1,7 @@
 package com.eventoapp.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -68,6 +69,13 @@ public class EventoController {
 	@RequestMapping("/deletarEvento")
 	public String deletarEvento(long codigo) {
 		Evento evento = er.findByCodigo(codigo);
+		
+		Iterable<Convidado> convidados = cr.findByEvento(evento);
+		for(Convidado convidado : convidados) {
+			convidado.getEvento().remove(evento);
+			cr.save(convidado);
+		}
+		
 		er.delete(evento);
 		return "redirect:/eventos";
 	}
@@ -80,20 +88,40 @@ public class EventoController {
 		}
 		
 		Evento evento = er.findByCodigo(codigo);
-		convidado.setEvento(evento);
-		cr.save(convidado);
+		//convidado.setEvento(evento);
+		//cr.save(convidado);
+		
+		try {
+			Convidado c = cr.findByRg(convidado.getRg());
+			c.getEvento().add(evento);
+			cr.save(c);
+		} catch (Exception e){
+			System.out.println("Teste");
+			convidado.setEvento(new ArrayList<Evento>());
+			convidado.getEvento().add(evento);
+			cr.save(convidado);
+		}
 		attributes.addFlashAttribute("mensagem", "Convidado adicionado com sucesso");
 		return "redirect:/{codigo}";
 	}
 	
 	@RequestMapping("/deletarConvidado")
-	public String deletarConvidado(String rg) {
+	public String deletarConvidado(String rg, long codigo) {
 		Convidado convidado = cr.findByRg(rg);
-		cr.delete(convidado);
-		
-		Evento evento = convidado.getEvento();
-		long codigoLong = evento.getCodigo();
-		String codigo = "" + codigoLong;
+		Evento evento = er.findByCodigo(codigo);
+		convidado.getEvento().remove(evento);
+		//for(Convidado c : evento.getConvidados()) {
+			//if(c.getRg() == rg) {
+				//evento.getConvidados().remove(c);
+			//}
+		//}
+		cr.save(convidado);
+		//evento.getConvidados().remove(convidado);
+		er.save(evento);
+		//cr.delete(convidado);
+		//Evento evento = convidado.getEvento();
+		//long codigoLong = evento.getCodigo();
+		//String codigo = "" + codigoLong;
 		return "redirect:/" + codigo;
 	}
 }
