@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.ForeignKey;
@@ -35,7 +36,7 @@ public class Evento implements Serializable{
 	@NotEmpty
 	private String horario;
 	
-	@OneToMany//(mappedBy="evento", cascade=CascadeType.ALL, orphanRemoval=true)
+	@OneToMany(mappedBy="evento")
 	private List<Convidado> convidados;
 	
 	public long getCodigo() {
