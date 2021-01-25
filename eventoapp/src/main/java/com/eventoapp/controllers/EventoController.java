@@ -93,7 +93,7 @@ public class EventoController {
 			Convidado c = cr.findByRg(convidado.getRg());
 			c.getEvento().add(evento);
 			
-			//Essa linha é opcional. Com isso o convidado atualiza seu nome de cadsatro
+			//Essa linha é opcional. Com isso o convidado atualiza seu nome de cadastro
 			//com o mesmo RG, sem ela fica o nome cadastrado da primeira vez
 			//c.setNomeConvidado(convidado.getNomeConvidado());
 			
@@ -113,18 +113,8 @@ public class EventoController {
 		Convidado convidado = cr.findByRg(rg);
 		Evento evento = er.findByCodigo(codigo);
 		convidado.getEvento().remove(evento);
-		//for(Convidado c : evento.getConvidados()) {
-			//if(c.getRg() == rg) {
-				//evento.getConvidados().remove(c);
-			//}
-		//}
 		cr.save(convidado);
-		//evento.getConvidados().remove(convidado);
-		er.save(evento);
-		//cr.delete(convidado);
-		//Evento evento = convidado.getEvento();
-		//long codigoLong = evento.getCodigo();
-		//String codigo = "" + codigoLong;
+		
 		return "redirect:/" + codigo;
 	}
 }
