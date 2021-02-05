@@ -11,19 +11,19 @@ import com.eventoapp.repository.EventoRepository;
 @Controller
 public class IndexController {
 	
-	//@Autowired
-	//private EventoRepository er;
+	@Autowired
+	private EventoRepository er;
 
-	@RequestMapping("/")
-	public String index() {
-		return "index";
-	}
-	
 	//@RequestMapping("/")
-	//public ModelAndView listaEventos() {
-	//	ModelAndView mv = new ModelAndView("index");
-	//	Iterable<Evento> eventos = er.findAll();
-	//	mv.addObject("eventos", eventos);
-	//	return mv;
+	//public String index() {
+	//	return "index";
 	//}
+	
+	@RequestMapping("/")
+	public ModelAndView listaEventos() {
+		ModelAndView mv = new ModelAndView("index");
+		Iterable<Evento> eventos = er.findAll();
+		mv.addObject("eventos", eventos);
+		return mv;
+	}
 }
