@@ -27,9 +27,9 @@ public class IndexController {
 	@RequestMapping("/")
 	public String index() {
 		Usuario u = new Usuario();
-		u.setLogin("kiko");
+		u.setLogin("teste");
 		u.setNomeCompleto("Kiko Prado");
-		u.setSenha(new BCryptPasswordEncoder().encode("kiko"));
+		u.setSenha(new BCryptPasswordEncoder().encode("teste"));
 		
 		Role role = new Role();
 		role.setNomeRole("ROLE_ADMIN");
