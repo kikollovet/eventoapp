@@ -13,6 +13,7 @@ import com.eventoapp.models.Evento;
 import com.eventoapp.models.Role;
 import com.eventoapp.models.Usuario;
 import com.eventoapp.repository.EventoRepository;
+import com.eventoapp.repository.RoleRepository;
 import com.eventoapp.repository.UsuarioRepository;
 
 @Controller
@@ -23,6 +24,9 @@ public class IndexController {
 	
 	@Autowired
 	private UsuarioRepository ur;
+	
+	@Autowired
+	private RoleRepository rr;
 
 	@RequestMapping("/")
 	public String index() {
@@ -51,15 +55,26 @@ public class IndexController {
 		u.setNomeCompleto("Kiko Prado");
 		u.setSenha(new BCryptPasswordEncoder().encode("teste"));
 		
+		ur.save(u);
+		
+//		Role role = new Role();
+//		role.setNomeRole("ROLE_ADMIN");
+//		
+//		List<Role> roles = new ArrayList<Role>();
+//		roles.add(role);
+//		
+//		u.setRoles(roles);
+		
 		Role role = new Role();
 		role.setNomeRole("ROLE_ADMIN");
 		
-		List<Role> roles = new ArrayList<Role>();
-		roles.add(role);
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		usuarios.add(u);
 		
-		u.setRoles(roles);
+		role.setUsuarios(usuarios);
+		rr.save(role);
 		
-		ur.save(u);
+		
 		
 		return "index";
 	}
