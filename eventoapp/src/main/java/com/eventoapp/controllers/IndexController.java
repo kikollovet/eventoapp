@@ -44,6 +44,26 @@ public class IndexController {
 		return "index";
 	}
 	
+	@RequestMapping("/criaUser")
+	public String criaUser() {
+		Usuario u = new Usuario();
+		u.setLogin("teste");
+		u.setNomeCompleto("Kiko Prado");
+		u.setSenha(new BCryptPasswordEncoder().encode("teste"));
+		
+		Role role = new Role();
+		role.setNomeRole("ROLE_ADMIN");
+		
+		List<Role> roles = new ArrayList<Role>();
+		roles.add(role);
+		
+		u.setRoles(roles);
+		
+		ur.save(u);
+		
+		return "index";
+	}
+	
 //	@RequestMapping("/")
 //	public ModelAndView listaEventos() {
 //		ModelAndView mv = new ModelAndView("index");
