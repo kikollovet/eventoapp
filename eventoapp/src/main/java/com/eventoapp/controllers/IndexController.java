@@ -50,10 +50,21 @@ public class IndexController {
 	
 	@RequestMapping("/criaUser")
 	public String criaUser() {
+		
+		Role role = new Role();
+		role.setNomeRole("ROLE_ADMIN");
+		rr.save(role);
+		
+		
 		Usuario u = new Usuario();
-		u.setLogin("teste");
+		u.setLogin("kiko");
 		u.setNomeCompleto("Kiko Prado");
-		u.setSenha(new BCryptPasswordEncoder().encode("teste"));
+		u.setSenha(new BCryptPasswordEncoder().encode("kiko"));
+		
+		List<Role> roles = new ArrayList<Role>();
+		roles.add(role);
+		
+		u.setRoles(roles);
 		
 		ur.save(u);
 		
@@ -65,14 +76,21 @@ public class IndexController {
 //		
 //		u.setRoles(roles);
 		
-		Role role = new Role();
-		role.setNomeRole("ROLE_ADMIN");
+//		Role role = new Role();
+//		role.setNomeRole("ROLE_ADMIN");
 		
-		List<Usuario> usuarios = new ArrayList<Usuario>();
-		usuarios.add(u);
+//		List<Usuario> usuarios = new ArrayList<Usuario>();
+//		usuarios.add(u);
 		
-		role.setUsuarios(usuarios);
-		rr.save(role);
+//		role.setUsuarios(usuarios);
+//		rr.save(role);
+//		
+//		List<Role> roles = new ArrayList<Role>();
+//		roles.add(role);
+//		
+//		u.setRoles(roles);
+//		
+//		ur.save(u);
 		
 		
 		
