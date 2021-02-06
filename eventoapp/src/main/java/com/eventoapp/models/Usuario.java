@@ -27,14 +27,14 @@ private static final long serialVersionUID = 1L;
 	@NotEmpty
 	private String senha;
 	
-//	@ManyToMany
-//	@JoinTable( 
-//	        name = "usuarios_roles", 
-//	        joinColumns = @JoinColumn(
-//	          name = "usuario_id", referencedColumnName = "login"), 
-//	        inverseJoinColumns = @JoinColumn(
-//	          name = "role_id", referencedColumnName = "nomeRole")) 
-//    private List<Role> roles;
+	@ManyToMany
+	@JoinTable( 
+	        name = "usuarios_roles", 
+	        joinColumns = @JoinColumn(
+	          name = "usuario_id", referencedColumnName = "login"), 
+	        inverseJoinColumns = @JoinColumn(
+	          name = "role_id", referencedColumnName = "nomeRole")) 
+    private List<Role> roles;
 
 	public String getLogin() {
 		return login;
@@ -60,19 +60,19 @@ private static final long serialVersionUID = 1L;
 		this.senha = senha;
 	}
 
-//	public List<Role> getRoles() {
-//		return roles;
-//	}
-//
-//	public void setRoles(List<Role> roles) {
-//		this.roles = roles;
-//	}
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-//		return (Collection<? extends GrantedAuthority>) this.roles;
-		return null;
+		return (Collection<? extends GrantedAuthority>) this.roles;
+//		return null;
 	}
 
 	@Override
