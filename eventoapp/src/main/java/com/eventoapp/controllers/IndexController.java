@@ -48,42 +48,18 @@ public class IndexController {
 		return "index";
 	}
 	
-	@RequestMapping("/criaUser")
-	public String criaUser() {
-		
-		Role role = new Role();
-		role.setNomeRole("ROLE_USER");
-		rr.save(role);
-		
-		
-		Usuario u = new Usuario();
-		u.setLogin("user");
-		u.setNomeCompleto("Kiko Prado");
-		u.setSenha(new BCryptPasswordEncoder().encode("user"));
-		
-		List<Role> roles = new ArrayList<Role>();
-		roles.add(role);
-		
-		u.setRoles(roles);
-		
-		ur.save(u);
-		
-//		Role role = new Role();
-//		role.setNomeRole("ROLE_ADMIN");
+//	@RequestMapping("/criaUser")
+//	public String criaUser() {
 //		
-//		List<Role> roles = new ArrayList<Role>();
-//		roles.add(role);
-//		
-//		u.setRoles(roles);
-		
 //		Role role = new Role();
-//		role.setNomeRole("ROLE_ADMIN");
-		
-//		List<Usuario> usuarios = new ArrayList<Usuario>();
-//		usuarios.add(u);
-		
-//		role.setUsuarios(usuarios);
+//		role.setNomeRole("ROLE_USER");
 //		rr.save(role);
+//		
+//		
+//		Usuario u = new Usuario();
+//		u.setLogin("user");
+//		u.setNomeCompleto("Kiko Prado");
+//		u.setSenha(new BCryptPasswordEncoder().encode("user"));
 //		
 //		List<Role> roles = new ArrayList<Role>();
 //		roles.add(role);
@@ -91,11 +67,35 @@ public class IndexController {
 //		u.setRoles(roles);
 //		
 //		ur.save(u);
-		
-		
-		
-		return "index";
-	}
+//		
+////		Role role = new Role();
+////		role.setNomeRole("ROLE_ADMIN");
+////		
+////		List<Role> roles = new ArrayList<Role>();
+////		roles.add(role);
+////		
+////		u.setRoles(roles);
+//		
+////		Role role = new Role();
+////		role.setNomeRole("ROLE_ADMIN");
+//		
+////		List<Usuario> usuarios = new ArrayList<Usuario>();
+////		usuarios.add(u);
+//		
+////		role.setUsuarios(usuarios);
+////		rr.save(role);
+////		
+////		List<Role> roles = new ArrayList<Role>();
+////		roles.add(role);
+////		
+////		u.setRoles(roles);
+////		
+////		ur.save(u);
+//		
+//		
+//		
+//		return "index";
+//	}
 	
 //	@RequestMapping("/")
 //	public ModelAndView listaEventos() {
